@@ -7,22 +7,7 @@ cat << EOF > /etc/xray/config.json
 {
   "inbounds": [
     {
-      "port": $PORT,
-      "protocol": "vless",
-      "settings": {
-        "decryption": "none",
-        "clients": [
-          {
-            "id": "$UUID"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws"
-      }
-    },
-    {
-      "port": 443,
+      "port": "$PORT",
       "protocol": "vless",
       "settings": {
         "decryption": "none",
