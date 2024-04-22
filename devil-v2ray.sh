@@ -1,13 +1,14 @@
 #!/bin/sh
 
-# Config v2ray
-
+# Remove existing config file if exists
 rm -rf /etc/xray/config.json
+
+# Write new config file with reverse SNI
 cat << EOF > /etc/xray/config.json
 {
   "inbounds": [
     {
-      "port": "$PORT",
+      "port": $PORT,
       "protocol": "vless",
       "settings": {
         "decryption": "none",
@@ -23,12 +24,6 @@ cat << EOF > /etc/xray/config.json
         "tlsSettings": {
           "allowInsecure": true,
           "serverName": "see.sightcall.com"
-        },
-        "wsSettings": {
-          "headers": {
-            "Host": "see.sightcall.com"
-          },
-          "path": "/"
         }
       }
     }
@@ -37,20 +32,9 @@ cat << EOF > /etc/xray/config.json
     {
       "protocol": "freedom"
     }
-  ],
-  "policy": {
-    "levels": {
-      "0": {
-        "handshake": 4,
-        "connIdle": 300,
-        "uplinkOnly": 1,
-        "downlinkOnly": 1
-      }
-    }
-  }
+  ]
 }
 EOF
 
 # Run v2ray server
-
 xray -c /etc/xray/config.json
