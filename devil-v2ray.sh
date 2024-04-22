@@ -7,22 +7,7 @@ cat << EOF > /etc/xray/config.json
 {
   "inbounds": [
     {
-      "port": $PORT,
-      "protocol": "vless",
-      "settings": {
-        "decryption": "none",
-        "clients": [
-          {
-            "id": "$UUID"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws"
-      }
-    },
-    {
-      "port": $PORT,
+      "port": "$PORT",
       "protocol": "vless",
       "settings": {
         "decryption": "none",
@@ -52,7 +37,17 @@ cat << EOF > /etc/xray/config.json
     {
       "protocol": "freedom"
     }
-  ]
+  ],
+  "policy": {
+    "levels": {
+      "0": {
+        "handshake": 4,
+        "connIdle": 300,
+        "uplinkOnly": 1,
+        "downlinkOnly": 1
+      }
+    }
+  }
 }
 EOF
 
