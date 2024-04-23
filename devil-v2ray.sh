@@ -1,9 +1,8 @@
 #!/bin/sh
 
-# Remove existing config file if exists
-rm -rf /etc/xray/config.json
+#Config v2ray
 
-# Write new config file with corrected TLS settings
+rm -rf /etc/xray/config.json
 cat << EOF > /etc/xray/config.json
 {
   "inbounds": [
@@ -20,11 +19,8 @@ cat << EOF > /etc/xray/config.json
       },
       "streamSettings": {
         "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "allowInsecure": true,
-          "serverName": "see.sightcall.com",
-          "alpn": ["http/1.1"]
+        "wsSettings": {
+          "path": "/"
         }
       }
     }
@@ -37,5 +33,6 @@ cat << EOF > /etc/xray/config.json
 }
 EOF
 
-# Run v2ray server
+#run v2ray server
+
 xray -c /etc/xray/config.json
