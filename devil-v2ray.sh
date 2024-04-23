@@ -1,39 +1,36 @@
 #!/bin/sh
 
-# Config v2ray
+# Config v2ray (remember to replace placeholders)
 
 rm -rf /etc/xray/config.json
 cat << EOF > /etc/xray/config.json
 {
   "inbounds": [
     {
-      "port": $PORT, 
+      "port": $PORT,  # Use port 443 for standard HTTPS traffic
       "protocol": "vless",
       "settings": {
         "decryption": "none",
         "clients": [
           {
-            "id": "$UUID" 
+            "id": "$UUID" # Replace with your actual UUID
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
-        "security": "tls", 
-        "wsSettings": {
-          "headers": {
-            "Host": "see.sightcall.com" 
-          },
-          "path": "/" 
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "see.sightcall.com" 
         }
       }
     }
   ],
-  "outbounds": [ 
+  "outbounds": [
     {
       "protocol": "freedom"
     }
-  ] 
+  ]
 }
 EOF
 
