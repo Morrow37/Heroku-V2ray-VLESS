@@ -20,10 +20,6 @@ cat << EOF > /etc/xray/config.json
       "streamSettings": {
         "network": "ws",
         "security": "tls", 
-        "tlsSettings": {
-          "allowInsecure": true, 
-          "serverName": "see.sightcall.com" 
-        }, 
         "wsSettings": {
           "headers": {
             "Host": "see.sightcall.com" 
