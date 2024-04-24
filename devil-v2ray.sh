@@ -13,7 +13,7 @@ cat << EOF > /etc/xray/config.json
         "clients": [
           {
             "id": "$UUID", 
-            "flow": "xtls-rprx-vision"  # Use "xtls-rprx-reality" if needed
+            "flow": "xtls-rprx-reality"  # Use the REALITY flow
           }
         ]
       },
