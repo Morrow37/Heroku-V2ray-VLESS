@@ -13,15 +13,15 @@ cat << EOF > /etc/xray/config.json
         "clients": [
           {
             "id": "$UUID", 
-            "flow": "xtls-rprx-direct"  # Enable XTLS for CloudFlare proxying
+            "flow": "xtls-rprx-vision"  # Use "xtls-rprx-reality" if needed
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
-        "security": "xtls",  # Activate XTLS
+        "security": "xtls",  
         "xtlsSettings": {
-          "serverName": "see.sightcall.com"  # Your bug host
+          "serverName": "see.sightcall.com"  
         }
       }
     }
@@ -30,7 +30,7 @@ cat << EOF > /etc/xray/config.json
     {
       "protocol": "freedom",
       "settings": {
-        "domainStrategy": "UseIP"  # May be needed for Heroku
+        "domainStrategy": "UseIP"  
       }
     }
   ]
@@ -38,4 +38,4 @@ cat << EOF > /etc/xray/config.json
 EOF
 
 # Run v2ray server
-xray -c /etc/xray/config.json
+xray -c /etc/xray/config.json 
