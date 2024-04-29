@@ -1,41 +1,35 @@
 #!/bin/sh
 
-# Config v2ray (assumes you're using VLESS)
+#Config v2ray
+
 rm -rf /etc/xray/config.json
 cat << EOF > /etc/xray/config.json
 {
   "inbounds": [
     {
-      "port": $PORT, 
+      "port": $PORT,
       "protocol": "vless",
       "settings": {
         "decryption": "none",
         "clients": [
           {
-            "id": "$UUID", 
-            "flow": "xtls-rprx-reality"  # Use the REALITY flow
+            "id": "$UUID"
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "xtls",  
-        "xtlsSettings": {
-          "serverName": "see.sightcall.com"  
-        }
+        "network": "ws"
       }
     }
   ],
   "outbounds": [
     {
-      "protocol": "freedom",
-      "settings": {
-        "domainStrategy": "UseIP"  
-      }
+      "protocol": "freedom"
     }
   ]
 }
 EOF
 
-# Run v2ray server
-xray -c /etc/xray/config.json 
+#run v2ray server
+
+xray -c /etc/xray/config.json
